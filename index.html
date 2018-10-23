@@ -9,7 +9,25 @@
 <body>
   <script src="./redux.min.js"></script>
   <script>
-    console.log('Hello Redux!');
+    // state
+    let state = [];
+    // reducer
+    let reducer = (state=[], action) => {
+      if (action.type === 'NEW_ORDER') {
+        let newState = [...state, action.payload];
+        console.log(newState);
+        return newState;
+      }
+      return state;
+    }
+    // action
+    let action = {type: 'NEW_ORDER', payload: 'Coffee'};
+
+    let store = Redux.createStore(reducer);
+
+    store.dispatch(action);
+    store.dispatch(action);
+
   </script>
 </body>
 </html>
