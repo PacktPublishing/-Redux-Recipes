@@ -8,46 +8,6 @@
 </head>
 <body>
   <script src="./redux.min.js"></script>
-  <script>
-    // reducer
-    let reducer = (state=[], action) => {
-      switch(action.type) {
-        case 'NEW_ORDER': {
-          let newState = [...state, action.payload];
-          return newState;
-        }
-        case 'CHANGE_AMOUNT': {
-          let {id, amount} = action.payload;
-          let newState = [...state];
-          newState.map((item)=> {
-            if(item.id === id) {
-              item.amount = amount;
-            }
-          });
-          return newState;
-        }
-        case 'DELETE_ORDER': {
-          let {id} = action.payload;
-          let newState = [...state];
-          return newState.filter((item)=> item.id !== id);
-        }
-        default:
-          return state;
-      }
-    }
-
-    let store = Redux.createStore(reducer);
-    store.subscribe(() => {
-      console.log(store.getState());
-    });
-
-    store.dispatch({type: 'NEW_ORDER', payload: {id: 1, order: 'Coffee', amount: 1}});
-    store.dispatch({type: 'NEW_ORDER', payload: {id: 2, order: 'Cake', amount: 1}});
-    store.dispatch({type: 'NEW_ORDER', payload: {id: 3, order: 'Sandwish', amount: 1}});
-
-    store.dispatch({type: 'CHANGE_AMOUNT', payload: {id: 2, amount: 2}});
-    store.dispatch({type: 'DELETE_ORDER', payload: {id: 3}});
-
-  </script>
+  <script src="./myredux.js"></script>
 </body>
 </html>
