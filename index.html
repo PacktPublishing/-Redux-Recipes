@@ -9,13 +9,10 @@
 <body>
   <script src="./redux.min.js"></script>
   <script>
-    // state
-    let state = [];
     // reducer
     let reducer = (state=[], action) => {
       if (action.type === 'NEW_ORDER') {
         let newState = [...state, action.payload];
-        console.log(newState);
         return newState;
       }
       return state;
@@ -27,6 +24,9 @@
 
     store.dispatch(action);
     store.dispatch(action);
+    store.dispatch(action);
+
+    console.log(store.getState());
 
   </script>
 </body>
