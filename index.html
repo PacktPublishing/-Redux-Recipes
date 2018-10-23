@@ -37,16 +37,16 @@
     }
 
     let store = Redux.createStore(reducer);
+    store.subscribe(() => {
+      console.log(store.getState());
+    });
 
     store.dispatch({type: 'NEW_ORDER', payload: {id: 1, order: 'Coffee', amount: 1}});
     store.dispatch({type: 'NEW_ORDER', payload: {id: 2, order: 'Cake', amount: 1}});
     store.dispatch({type: 'NEW_ORDER', payload: {id: 3, order: 'Sandwish', amount: 1}});
 
-    console.log(store.getState());
     store.dispatch({type: 'CHANGE_AMOUNT', payload: {id: 2, amount: 2}});
-    console.log(store.getState());
     store.dispatch({type: 'DELETE_ORDER', payload: {id: 3}});
-    console.log(store.getState());
 
   </script>
 </body>
