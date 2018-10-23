@@ -11,11 +11,29 @@
   <script>
     // reducer
     let reducer = (state=[], action) => {
-      if (action.type === 'NEW_ORDER') {
-        let newState = [...state, action.payload];
-        return newState;
+      switch(action.type) {
+        case 'NEW_ORDER': {
+          let newState = [...state, action.payload];
+          return newState;
+        }
+        case 'CHANGE_AMOUNT': {
+          let {id, amount} = action.payload;
+          let newState = [...state];
+          newState.map((item)=> {
+            if(item.id === id) {
+              item.amount = amount;
+            }
+          });
+          return newState;
+        }
+        case 'DELETE_ORDER': {
+          let {id} = action.payload;
+          let newState = [...state];
+          return newState.filter((item)=> item.id !== id);
+        }
+        default:
+          return state;
       }
-      return state;
     }
 
     let store = Redux.createStore(reducer);
@@ -25,7 +43,7 @@
     store.dispatch({type: 'NEW_ORDER', payload: {id: 3, order: 'Sandwish', amount: 1}});
 
     console.log(store.getState());
-    store.dispatch({type: 'CHANGE_AMOUNT', payload: {id: 2, amount: 3}});
+    store.dispatch({type: 'CHANGE_AMOUNT', payload: {id: 2, amount: 2}});
     console.log(store.getState());
     store.dispatch({type: 'DELETE_ORDER', payload: {id: 3}});
     console.log(store.getState());
