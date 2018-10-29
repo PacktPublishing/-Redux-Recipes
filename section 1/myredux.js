@@ -2,7 +2,7 @@ let initialState = {
   orders: [
     { id: 1, order: 'Coffee', amount: 1 },
     { id: 2, order: 'Cake', amount: 1 },
-    { id: 3, order: 'Sandwish', amount: 1 }
+    { id: 3, order: 'Sandwich', amount: 1 }
   ],
   users: [
     { id: 1, name: 'John', age: 34 },
