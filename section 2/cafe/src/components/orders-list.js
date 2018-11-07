@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { deleteOrder } from '../actions/orderActions';
 
 class OrdersList extends Component {
   deleteOrder = e => {
-    console.log(parseInt(e.target.getAttribute('data-id')));
+    this.props.deleteOrder(parseInt(e.target.getAttribute('data-id')));
   };
 
   loadOrders = orders => {
@@ -42,5 +43,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  null
+  { deleteOrder }
 )(OrdersList);
