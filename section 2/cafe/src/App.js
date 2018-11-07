@@ -27,8 +27,8 @@ class App extends Component {
         <div className="App">
           <OrderForm addOrder={this.addOrder} />
           <hr />
-          <OrderCounter count={this.state.orders.length} />
-          <OrdersList orders={this.state.orders} />
+          <OrderCounter />
+          <OrdersList />
         </div>
       </Provider>
     );

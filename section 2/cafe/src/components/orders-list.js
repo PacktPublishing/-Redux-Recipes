@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class OrdersList extends Component {
-
+class OrdersList extends Component {
   deleteOrder = e => {
     console.log(parseInt(e.target.getAttribute('data-id')));
   };
@@ -35,3 +35,12 @@ export default class OrdersList extends Component {
     return <div className="pt-3">{this.loadOrders(orders)}</div>;
   }
 }
+
+const mapStateToProps = state => ({
+  orders: state.orders
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(OrdersList);
