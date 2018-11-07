@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addOrder } from '../actions/orderActions';
 
-export default class OrderForm extends Component {
+class OrderForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +16,7 @@ export default class OrderForm extends Component {
   addOrder = e => {
     e.preventDefault();
     this.props.addOrder(this.state);
-    this.setState({order:'', amount: 1});
+    this.setState({ order: '', amount: 1 });
   };
 
   handleChange = e => {
@@ -53,3 +55,8 @@ export default class OrderForm extends Component {
     );
   }
 }
+
+export default connect(
+  null,
+  { addOrder }
+)(OrderForm);
