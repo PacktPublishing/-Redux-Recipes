@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { deleteOrder } from '../actions/orderActions';
 
 class OrdersList extends Component {
@@ -35,6 +36,11 @@ class OrdersList extends Component {
     let orders = this.props.orders;
     return <div className="pt-3">{this.loadOrders(orders)}</div>;
   }
+}
+
+OrdersList.propTypes = {
+  orders: PropTypes.array.isRequired,
+  deleteOrder: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

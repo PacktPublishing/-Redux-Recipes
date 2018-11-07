@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class OrderCounter extends Component {
   render() {
@@ -9,6 +10,10 @@ class OrderCounter extends Component {
       </div>
     );
   }
+}
+
+OrderCounter.propTypes = {
+  count: PropTypes.number.isRequired
 }
 
 const mapStateToProps = state => ({

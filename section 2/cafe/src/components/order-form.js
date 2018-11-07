@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addOrder } from '../actions/orderActions';
 
 class OrderForm extends Component {
@@ -54,6 +55,10 @@ class OrderForm extends Component {
       </form>
     );
   }
+}
+
+OrderForm.propTypes = {
+  addOrder: PropTypes.func.isRequired
 }
 
 export default connect(
