@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import store from './store'
 import './App.css';
 import OrderCounter from './components/order-counter';
 import OrderForm from './components/order-form';
 import OrdersList from './components/orders-list';
-
 
 class App extends Component {
   constructor(props) {
@@ -11,23 +12,25 @@ class App extends Component {
 
     this.state = {
       orders: []
-    }
+    };
   }
 
-  addOrder = (order) => {
-    let {orders} = this.state;
+  addOrder = order => {
+    let { orders } = this.state;
     orders.push(order);
-    this.setState({orders});
-  }
+    this.setState({ orders });
+  };
 
   render() {
     return (
-      <div className="App">
-        <OrderForm addOrder={this.addOrder}/>
-        <hr />
-        <OrderCounter count={this.state.orders.length} />
-        <OrdersList orders={this.state.orders}/>
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <OrderForm addOrder={this.addOrder} />
+          <hr />
+          <OrderCounter count={this.state.orders.length} />
+          <OrdersList orders={this.state.orders} />
+        </div>
+      </Provider>
     );
   }
 }
