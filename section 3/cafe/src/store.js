@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers';
 
 let logger = store => next => action => {
@@ -12,8 +12,13 @@ let logger = store => next => action => {
 let FooLogger = store => next => action => {
   console.log('In Foo');
   next(action);
-}
+};
 
-const store = createStore(rootReducer, applyMiddleware(logger,FooLogger));
+let composeDevTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducer,
+  composeDevTools(applyMiddleware(logger, FooLogger))
+);
 
 export default store;
