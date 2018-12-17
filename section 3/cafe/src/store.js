@@ -1,16 +1,19 @@
-import { createStore } from 'redux';
-import rootReducer from './reducers'
-import { addOrder } from './actions/orderActions';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './reducers';
 
-const store = createStore(rootReducer);
+let logger = store => next => action => {
+  console.group('dispatching:', action.type);
+  let result = next(action);
+  console.log('next state:', store.getState());
+  console.groupEnd();
+  return result;
+};
 
-function interruptDispatch(action) {
-  console.log('before dispatching');
-  action.payload = {...action.payload, amount: 1};
-  store.dispatch(action);
-  console.log('after dispatching');
+let FooLogger = store => next => action => {
+  console.log('In Foo');
+  next(action);
 }
 
-interruptDispatch(addOrder({order:'Tea'}));
+const store = createStore(rootReducer, applyMiddleware(logger,FooLogger));
 
-export default store; 
+export default store;
