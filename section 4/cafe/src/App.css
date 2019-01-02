@@ -35,3 +35,42 @@
     transform: rotate(360deg);
   }
 }
+
+.customer-card {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  padding: 30px 30px;
+  background: #eee;
+  border: 10px solid #fff;
+  position: relative;
+}
+
+.customer-card:hover , .customer-card.selected{
+  border-color: #999;
+  background-color: #777;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.customer-card.selected::after {
+  content: 'Current';
+  width: 100%;
+  position: absolute;
+  top: -11px;
+  right: -5px;
+  font-size: 8px;
+}
+
+.customer-card .order-count {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-weight: normal;
+  font-size: 10px;
+}
+
+.customer-card * {
+  pointer-events: none;
+}

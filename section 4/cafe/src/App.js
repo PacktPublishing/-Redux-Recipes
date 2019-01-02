@@ -5,6 +5,7 @@ import './App.css';
 import OrderCounter from './components/order-counter';
 import OrderForm from './components/order-form';
 import OrdersList from './components/orders-list';
+import Customers from './components/customers'
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <hr />
           <OrderCounter />
           <OrdersList />
+          <Customers />
         </div>
       </Provider>
     );
