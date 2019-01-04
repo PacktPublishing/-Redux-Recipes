@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteOrder } from '../actions/orderActions';
+import { deleteOrder, submitOrder } from '../actions/orderActions';
 
 class OrdersList extends Component {
+  pushItemsAsOrder = () => {
+    this.props.submitOrder({
+      customer: this.props.customers.find(c => c.selected).id,
+      time: new Date().toLocaleTimeString(),
+      list: this.props.orders
+    });
+  }
+
   deleteOrder = e => {
     this.props.deleteOrder(parseInt(e.target.getAttribute('data-id')));
   };
@@ -34,20 +42,26 @@ class OrdersList extends Component {
 
   render() {
     let orders = this.props.orders;
-    return <div className="pt-3">{this.loadOrders(orders)}</div>;
+    return (
+      <div>
+        <div className="pt-3">{this.loadOrders(orders)}</div>
+        <button className="btn btn-block btn-primary mt-3" onClick={this.pushItemsAsOrder}>Submit Order</button>
+      </div>
+    );
   }
 }
 
 OrdersList.propTypes = {
   orders: PropTypes.array.isRequired,
   deleteOrder: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = state => ({
-  orders: state.orders
+  orders: state.orders,
+  customers: state.customers
 });
 
 export default connect(
   mapStateToProps,
-  { deleteOrder }
+  { deleteOrder, submitOrder }
 )(OrdersList);

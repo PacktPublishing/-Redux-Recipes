@@ -74,3 +74,24 @@
 .customer-card * {
   pointer-events: none;
 }
+
+.order-card {
+  background: #fddead;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.order-card .order-id {
+  font-size: 80px;
+  line-height: 80px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  min-width: 90px;
+  color: #ffe5b9;
+  font-weight: bold;
+  background: #fddead;
+  padding: 0 20px;
+}

@@ -5,18 +5,26 @@ import './App.css';
 import OrderCounter from './components/order-counter';
 import OrderForm from './components/order-form';
 import OrdersList from './components/orders-list';
-import Customers from './components/customers'
+import Customers from './components/customers';
+import OrderBacklog from './components/order-backlog'
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <OrderForm />
-          <hr />
-          <OrderCounter />
-          <OrdersList />
-          <Customers />
+        <div className="App container">
+          <div className="row">
+            <div className="col-sm-6">
+              <OrderForm />
+              <hr />
+              <Customers />
+              <OrdersList />
+            </div>
+            <div className="col-sm-6">
+              <OrderCounter />
+              <OrderBacklog />
+            </div>
+          </div>
         </div>
       </Provider>
     );
