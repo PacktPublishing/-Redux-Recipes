@@ -17,7 +17,7 @@ OrderCounter.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  count: state.orders.length
+  count: state.backlog.length
 });
 
 export default connect(

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteOrder, submitOrder } from '../actions/orderActions';
+import {
+  deleteOrder,
+  submitOrder,
+  resetAfterSubmit
+} from '../actions/orderActions';
 
 class OrdersList extends Component {
   pushItemsAsOrder = () => {
@@ -10,7 +14,9 @@ class OrdersList extends Component {
       time: new Date().toLocaleTimeString(),
       list: this.props.orders
     });
-  }
+
+    this.props.resetAfterSubmit();
+  };
 
   deleteOrder = e => {
     this.props.deleteOrder(parseInt(e.target.getAttribute('data-id')));
@@ -45,7 +51,16 @@ class OrdersList extends Component {
     return (
       <div>
         <div className="pt-3">{this.loadOrders(orders)}</div>
-        <button className="btn btn-block btn-primary mt-3" onClick={this.pushItemsAsOrder}>Submit Order</button>
+        <button
+          className={
+            'btn btn-block btn-primary mt-3 ' +
+            (this.props.orders.length > 0 ? '' : 'd-none')
+          }
+          disabled={!this.props.selectedCustomer}
+          onClick={this.pushItemsAsOrder}
+        >
+          Submit Order
+        </button>
       </div>
     );
   }
@@ -58,10 +73,11 @@ OrdersList.propTypes = {
 
 const mapStateToProps = state => ({
   orders: state.orders,
-  customers: state.customers
+  customers: state.customers,
+  selectedCustomer: state.customers.find(c => c.selected)
 });
 
 export default connect(
   mapStateToProps,
-  { deleteOrder, submitOrder }
+  { deleteOrder, submitOrder, resetAfterSubmit }
 )(OrdersList);

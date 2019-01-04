@@ -20,6 +20,7 @@ export class Customers extends Component {
             className={'customer-card ' + (customer.selected ? 'selected' : '')}
             onClick={this.markAsSelected}
           >
+            <div className="order-count">Orders: {this.props.backlog.filter(order => order.customer === customer.id).length}</div>
             {customer.name}
           </div>
         ))}
@@ -29,7 +30,8 @@ export class Customers extends Component {
 }
 
 const mapStateToProps = state => ({
-  customers: state.customers
+  customers: state.customers,
+  backlog: state.backlog
 });
 
 const mapDispatchToProps = {
