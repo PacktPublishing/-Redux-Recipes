@@ -9,9 +9,17 @@ export class OrderBacklog extends Component {
     this.props.markOrderAsDone(id);
   }
   render() {
+    let searchTerm = this.props.searchTerm.toLowerCase();
+    let backlog = this.props.backlog;
+    let searchResults = backlog.filter(order => {
+      return order.list.find(item => item.order.toLowerCase() === searchTerm)
+    });
+
+    let ordersBacklog = searchTerm ? searchResults : backlog;
+
     return (
       <div>
-        {this.props.backlog.map(order => (
+        {ordersBacklog.map(order => (
           <div key={order.time} className="order-card">
             <div className="clearfix">
               <strong className="float-left py-2 mb-0">Items list:</strong>
@@ -46,7 +54,8 @@ export class OrderBacklog extends Component {
 
 const mapStateToProps = state => ({
   backlog: state.backlog,
-  customers: state.customers
+  customers: state.customers,
+  searchTerm: state.searchTerm
 });
 
 const mapDispatchToProps = {
