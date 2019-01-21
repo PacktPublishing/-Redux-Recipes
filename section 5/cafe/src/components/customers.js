@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { markCustomerAsSelected } from '../actions/customersActions';
+import { markCustomerAsSelected,fetchCustomers} from '../actions/customersActions';
 
 export class Customers extends Component {
+  componentWillMount = () => {
+    this.props.fetchCustomers();
+  }
+
   markAsSelected = e => {
     this.props.markCustomerAsSelected(
       parseInt(e.target.getAttribute('data-id'))
@@ -35,7 +39,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  markCustomerAsSelected
+  markCustomerAsSelected,
+  fetchCustomers
 };
 
 export default connect(
