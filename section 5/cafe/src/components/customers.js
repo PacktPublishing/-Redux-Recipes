@@ -17,6 +17,7 @@ export class Customers extends Component {
   render() {
     return (
       <div>
+        {this.props.isFetching ? 'loading customers ...': ''}
         {this.props.customers.map(customer => (
           <div
             key={customer.id}
@@ -34,7 +35,8 @@ export class Customers extends Component {
 }
 
 const mapStateToProps = state => ({
-  customers: state.customers,
+  isFetching: state.customers.isFetching,
+  customers: state.customers.list,
   backlog: state.backlog
 });
 

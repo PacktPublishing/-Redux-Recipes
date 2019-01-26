@@ -73,8 +73,8 @@ OrdersList.propTypes = {
 
 const mapStateToProps = state => ({
   orders: state.orders,
-  customers: state.customers,
-  selectedCustomer: state.customers.find(c => c.selected)
+  customers: state.customers.list,
+  selectedCustomer: state.customers.list.find(c => c.selected)
 });
 
 export default connect(

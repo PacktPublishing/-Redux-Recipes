@@ -54,7 +54,7 @@ export class OrderBacklog extends Component {
 
 const mapStateToProps = state => ({
   backlog: state.backlog,
-  customers: state.customers,
+  customers: state.customers.list,
   searchTerm: state.searchTerm
 });
 
