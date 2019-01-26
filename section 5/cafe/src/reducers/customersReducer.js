@@ -1,9 +1,9 @@
 import {
   SWITCH_CUSTOMER,
   RESET_AFTER_SUBMIT,
-  FETCH_CUSTOMERS_START,
-  FETCH_CUSTOMERS_SUCCESS,
-  FETCH_CUSTOMERS_FAILURE
+  FETCH_CUSTOMERS_PENDING,
+  FETCH_CUSTOMERS_FULFILLED,
+  FETCH_CUSTOMERS_REJECTED
 } from '../actions/types';
 
 let initState = {
@@ -25,10 +25,10 @@ const customerReducer = (state = initState, action) => {
       let nextState = [...state.list];
       nextState.forEach(c => (c.selected = false));
       return { ...state, list: nextState };
-    case FETCH_CUSTOMERS_START:
+    case FETCH_CUSTOMERS_PENDING:
       return { ...state, isFetching: true };
-    case FETCH_CUSTOMERS_SUCCESS:
-      const customerList = action.payload
+    case FETCH_CUSTOMERS_FULFILLED:
+      const customerList = action.payload.data
         .map(user => ({
           id: user.id,
           name: user.name.split(' ')[0],
@@ -36,7 +36,7 @@ const customerReducer = (state = initState, action) => {
         }))
         .splice(0, 2);
       return { isFetching: false, list: customerList };
-    case FETCH_CUSTOMERS_FAILURE:
+    case FETCH_CUSTOMERS_REJECTED:
       return { ...state, isFetching: false, errors: action.payload };
     default:
       return state;

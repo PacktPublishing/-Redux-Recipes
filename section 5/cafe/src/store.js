@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk'
+import promiseMiddleware from 'redux-promise-middleware'
 import rootReducer from './reducers';
 
 let logger = store => next => action => {
@@ -13,7 +13,7 @@ let composeDevTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  composeDevTools(applyMiddleware(logger, thunk))
+  composeDevTools(applyMiddleware(promiseMiddleware(), logger))
 );
 
 export default store;
