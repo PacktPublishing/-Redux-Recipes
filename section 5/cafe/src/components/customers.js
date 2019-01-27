@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { markCustomerAsSelected,fetchCustomers} from '../actions/customersActions';
+import {
+  markCustomerAsSelected,
+  fetchCustomers
+} from '../actions/customersActions';
 
 export class Customers extends Component {
   componentWillMount = () => {
-    this.props.fetchCustomers();
-  }
+    if (!this.props.customers.length) this.props.fetchCustomers();
+  };
 
   markAsSelected = e => {
     this.props.markCustomerAsSelected(
@@ -17,7 +20,7 @@ export class Customers extends Component {
   render() {
     return (
       <div>
-        {this.props.isFetching ? 'loading customers ...': ''}
+        {this.props.isFetching ? 'loading customers ...' : ''}
         {this.props.customers.map(customer => (
           <div
             key={customer.id}
@@ -25,7 +28,14 @@ export class Customers extends Component {
             className={'customer-card ' + (customer.selected ? 'selected' : '')}
             onClick={this.markAsSelected}
           >
-            <div className="order-count">Orders: {this.props.backlog.filter(order => order.customer === customer.id).length}</div>
+            <div className="order-count">
+              Orders:{' '}
+              {
+                this.props.backlog.filter(
+                  order => order.customer === customer.id
+                ).length
+              }
+            </div>
             {customer.name}
           </div>
         ))}
