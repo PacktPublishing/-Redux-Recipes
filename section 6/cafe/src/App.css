@@ -1,0 +1,97 @@
+.App {
+  max-width: 90%;
+  margin: 30px auto;
+}
+
+.order-row {
+  background: #eee;
+  border-bottom: 1px solid #ccc;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.customer-card {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  padding: 30px 30px;
+  background: #eee;
+  border: 10px solid #fff;
+  position: relative;
+}
+
+.customer-card:hover , .customer-card.selected{
+  border-color: #999;
+  background-color: #777;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.customer-card.selected::after {
+  content: 'Current';
+  width: 100%;
+  position: absolute;
+  top: -11px;
+  right: -5px;
+  font-size: 8px;
+}
+
+.customer-card .order-count {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-weight: normal;
+  font-size: 10px;
+}
+
+.customer-card * {
+  pointer-events: none;
+}
+
+.order-card {
+  background: #fddead;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.order-card .order-id {
+  font-size: 80px;
+  line-height: 80px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  min-width: 90px;
+  color: #ffe5b9;
+  font-weight: bold;
+  background: #fddead;
+  padding: 0 20px;
+}
