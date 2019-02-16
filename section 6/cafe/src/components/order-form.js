@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addOrder } from '../actions/orderActions';
 
-class OrderForm extends Component {
+export class OrderForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
