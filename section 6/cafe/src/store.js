@@ -17,7 +17,7 @@ const initialState = loadState();
 const store = createStore(
   rootReducer,
   initialState,
-  composeDevTools(applyMiddleware(promiseMiddleware(), logger))
+  composeDevTools(applyMiddleware(promiseMiddleware()))
 );
 
 store.subscribe(() => {
